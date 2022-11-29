@@ -12,8 +12,8 @@ SDKTOOL=${1?"Missing first parameter: sdktool executable path"}
 SDK_ID=${2?"Missing second parameter: sdk_id"}
 ICON="${3:-default.jpg}"
 
-CXX_CODEGEN_FLAGS=${OE_QMAKE_CXX/[^ ]* //}
-C_CODEGEN_FLAGS=${OE_QMAKE_CC/[^ ]* //}
+CXX_CODEGEN_FLAGS=$( echo $OE_QMAKE_CXX | cut -d ' ' -f 2- | sed -e "s/ /,/g" )
+C_CODEGEN_FLAGS=$( echo $OE_QMAKE_CC | cut -d ' ' -f 2- | sed -e "s/ /,/g" )
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
